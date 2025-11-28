@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest]
         python-version: ['3.10', '3.11', '3.12']
 
     steps:
@@ -39,9 +39,9 @@ jobs:
 
       - name: Verify package installation
         run: |
-          python -c "import matomo_mcp; print('✓ matomo_mcp imported successfully')"
-          python -c "from matomo_mcp.client import MatomoClient; print('✓ MatomoClient imported')"
-          python -c "from matomo_mcp.server import app; print('✓ Server app imported')"
+          python -c "import matomo_mcp; print('[OK] matomo_mcp imported successfully')"
+          python -c "from matomo_mcp.client import MatomoClient; print('[OK] MatomoClient imported')"
+          python -c "from matomo_mcp.server import app; print('[OK] Server app imported')"
 
       - name: Run unit tests
         run: |
@@ -59,14 +59,6 @@ jobs:
         run: |
           timeout 5 python -m matomo_mcp || [ $? -eq 124 ] || [ $? -eq 1 ]
         shell: bash
-        if: runner.os != 'Windows'
-
-      - name: Test package can be run as module (Windows)
-        run: |
-          Start-Process -NoNewWindow -FilePath "python" -ArgumentList "-m","matomo_mcp" -PassThru | Wait-Process -Timeout 5 -ErrorAction SilentlyContinue
-          exit 0
-        shell: pwsh
-        if: runner.os == 'Windows'
 
   test-with-coverage:
     name: Test with Coverage

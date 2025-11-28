@@ -1,18 +1,26 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Test script to verify MCP server functionality without requiring a live Matomo instance.
 """
 
 import asyncio
 import os
+import sys
 from matomo_mcp.server import app, list_tools, call_tool
+
+# Ensure UTF-8 output on Windows
+if sys.platform == 'win32':
+    import codecs
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
 
 
 async def test_server_initialization():
     """Test that the server initializes correctly."""
     print("Testing MCP server initialization...")
     assert app.name == "matomo-mcp-server"
-    print("✓ Server name correct")
+    print("[OK] Server name correct")
 
 
 async def test_list_tools():
@@ -40,7 +48,7 @@ async def test_list_tools():
     for expected in expected_tools:
         assert expected in tool_names, f"Missing tool: {expected}"
 
-    print(f"✓ All {len(expected_tools)} expected tools found")
+    print(f"[OK] All {len(expected_tools)} expected tools found")
     return tools
 
 
@@ -71,9 +79,9 @@ async def test_tool_schemas():
             assert "site_id" in tool.inputSchema["required"], \
                 f"{tool.name} should require site_id"
 
-            print(f"✓ {tool.name}: Schema valid")
+            print(f"[OK] {tool.name}: Schema valid")
         except AssertionError as e:
-            print(f"✗ {tool.name}: {e}")
+            print(f"[FAIL] {tool.name}: {e}")
             raise
 
 
@@ -96,7 +104,7 @@ async def test_tool_call_without_credentials():
         assert len(result) == 1
         assert result[0].type == "text"
         assert "Error:" in result[0].text
-        print(f"✓ Gracefully handles missing credentials")
+        print(f"[OK] Gracefully handles missing credentials")
         print(f"  Error message: {result[0].text[:80]}...")
     finally:
         # Restore environment variables
@@ -116,13 +124,13 @@ async def test_client_functionality():
     assert client.base_url == "https://demo.matomo.org"
     assert client.token_auth == "test_token"
     assert client.api_url == "https://demo.matomo.org/index.php"
-    print("✓ Client initialization correct")
+    print("[OK] Client initialization correct")
 
     # Test URL normalization
     client2 = MatomoClient("https://demo.matomo.org/", "test_token")
     assert client2.base_url == "https://demo.matomo.org"
     assert client2.api_url == "https://demo.matomo.org/index.php"
-    print("✓ URL normalization works")
+    print("[OK] URL normalization works")
 
 
 async def test_tool_parameters():
@@ -137,11 +145,11 @@ async def test_tool_parameters():
     assert "period" in props
     assert props["period"].get("enum") == ["day", "week", "month", "year", "range"]
     assert props["period"].get("default") == "day"
-    print("✓ Period parameter correctly defined")
+    print("[OK] Period parameter correctly defined")
 
     assert "date" in props
     assert props["date"].get("default") == "today"
-    print("✓ Date parameter correctly defined")
+    print("[OK] Date parameter correctly defined")
 
     # Test get_page_urls limit parameter
     pages_tool = next(t for t in tools if t.name == "get_page_urls")
@@ -150,7 +158,7 @@ async def test_tool_parameters():
     assert "limit" in props
     assert props["limit"]["type"] == "integer"
     assert props["limit"]["default"] == 10
-    print("✓ Limit parameter correctly defined")
+    print("[OK] Limit parameter correctly defined")
 
     # Test query_custom_report
     custom_tool = next(t for t in tools if t.name == "query_custom_report")
@@ -159,7 +167,7 @@ async def test_tool_parameters():
     assert "method" in props
     assert "additional_params" in props
     assert "method" in custom_tool.inputSchema["required"]
-    print("✓ Custom query tool correctly defined")
+    print("[OK] Custom query tool correctly defined")
 
 
 async def run_all_tests():
@@ -177,13 +185,13 @@ async def run_all_tests():
         await test_tool_call_without_credentials()
 
         print("\n" + "=" * 70)
-        print("ALL TESTS PASSED ✓")
+        print("ALL TESTS PASSED [OK]")
         print("=" * 70)
         return True
 
     except Exception as e:
         print("\n" + "=" * 70)
-        print(f"TEST FAILED ✗")
+        print(f"TEST FAILED [X]")
         print(f"Error: {e}")
         print("=" * 70)
         import traceback
