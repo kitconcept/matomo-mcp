@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "matomo": {
+      "command": "/Users/timo/.pyenv/versions/3.10.13/bin/python",
+      "args": ["-m", "matomo_mcp"],
+      "env": {
+        "MATOMO_URL": "https://your-matomo-instance.com",
+        "MATOMO_TOKEN": "your_api_token_here"
+      }
+    }
+  }
+}
