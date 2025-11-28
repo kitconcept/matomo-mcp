@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Test MCP protocol communication with the server.
 This simulates how Claude Desktop would communicate with the server.
@@ -8,6 +9,12 @@ import asyncio
 import json
 import sys
 from io import StringIO
+
+# Ensure UTF-8 output on Windows
+if sys.platform == 'win32':
+    import codecs
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
 
 
 async def test_mcp_protocol():
@@ -24,11 +31,11 @@ async def test_mcp_protocol():
     print("\n1. Testing server instance...")
     assert isinstance(app, Server)
     assert app.name == "matomo-mcp-server"
-    print("   ✓ Server instance is valid")
+    print("   [OK] Server instance is valid")
 
     print("\n2. Testing tool listing...")
     tools = await list_tools()
-    print(f"   ✓ Server provides {len(tools)} tools")
+    print(f"   [OK] Server provides {len(tools)} tools")
 
     tool_summary = {}
     for tool in tools:
@@ -84,7 +91,7 @@ async def test_mcp_protocol():
         assert actual_optional == expected_optional, \
             f"{tool_name}: Expected optional {expected_optional}, got {actual_optional}"
 
-        print(f"   ✓ {tool_name} schema correct")
+        print(f"   [OK] {tool_name} schema correct")
 
     print("\n5. Testing parameter types and constraints...")
 
@@ -93,13 +100,13 @@ async def test_mcp_protocol():
     assert period_schema["type"] == "string"
     assert set(period_schema["enum"]) == {"day", "week", "month", "year", "range"}
     assert period_schema["default"] == "day"
-    print("   ✓ Period enum values correct")
+    print("   [OK] Period enum values correct")
 
     pages_tool = next(t for t in tools if t.name == "get_page_urls")
     limit_schema = pages_tool.inputSchema["properties"]["limit"]
     assert limit_schema["type"] == "integer"
     assert limit_schema["default"] == 10
-    print("   ✓ Limit parameter correct")
+    print("   [OK] Limit parameter correct")
 
     print("\n6. Testing all tools have consistent parameters...")
     reporting_tools = [
@@ -121,7 +128,7 @@ async def test_mcp_protocol():
             assert "period" in props or tool_name == "query_custom_report"
             assert "date" in props or tool_name == "query_custom_report"
 
-    print("   ✓ All tools have consistent parameter patterns")
+    print("   [OK] All tools have consistent parameter patterns")
 
     print("\n7. Testing error handling without credentials...")
     from matomo_mcp.server import call_tool
@@ -139,7 +146,7 @@ async def test_mcp_protocol():
     assert len(result) == 1
     assert "Error:" in result[0].text
     assert "MATOMO_URL" in result[0].text or "MATOMO_TOKEN" in result[0].text
-    print("   ✓ Error handling works correctly")
+    print("   [OK] Error handling works correctly")
 
     # Restore env vars
     if old_url:
@@ -148,7 +155,7 @@ async def test_mcp_protocol():
         os.environ["MATOMO_TOKEN"] = old_token
 
     print("\n" + "=" * 70)
-    print("MCP PROTOCOL TESTS PASSED ✓")
+    print("MCP PROTOCOL TESTS PASSED [OK]")
     print("=" * 70)
     print("\nThe MCP server is ready for use with Claude Desktop!")
     print("\nNext steps:")
@@ -165,7 +172,7 @@ if __name__ == "__main__":
         asyncio.run(test_mcp_protocol())
         sys.exit(0)
     except Exception as e:
-        print(f"\n✗ TEST FAILED: {e}")
+        print(f"\n[FAIL] TEST FAILED: {e}")
         import traceback
         traceback.print_exc()
         sys.exit(1)
