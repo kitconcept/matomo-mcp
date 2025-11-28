@@ -8,8 +8,8 @@ This document explains the CI/CD workflows configured for the Matomo MCP Server.
 Runs comprehensive tests on multiple platforms and Python versions.
 
 **Triggers:**
-- Push to `main` or `develop` branches
-- Pull requests to `main` or `develop`
+- Push to `main` branch
+- Pull requests to `main`
 - Manual workflow dispatch
 
 **Matrix Testing:**
@@ -40,8 +40,8 @@ Runs comprehensive tests on multiple platforms and Python versions.
 Checks code quality and security.
 
 **Triggers:**
-- Push to `main` or `develop` branches
-- Pull requests to `main` or `develop`
+- Push to `main` branch
+- Pull requests to `main`
 - Manual workflow dispatch
 
 **Jobs:**
@@ -119,7 +119,7 @@ Dependabot is already configured in `.github/dependabot.yml`:
 
 ### Automatic Triggers
 Workflows run automatically on:
-- Every push to `main` or `develop`
+- Every push to `main`
 - Every pull request
 - Every tag push (for releases)
 

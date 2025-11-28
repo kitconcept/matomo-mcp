@@ -9,8 +9,8 @@ GitHub Actions workflows have been set up to automatically test and validate you
 ### ✅ 1. Tests Workflow (`.github/workflows/test.yml`)
 
 **Runs on:**
-- Every push to `main` or `develop` branches
-- Every pull request to `main` or `develop`
+- Every push to `main` branch
+- Every pull request to `main`
 - Manual trigger
 
 **What it does:**
@@ -26,7 +26,7 @@ GitHub Actions workflows have been set up to automatically test and validate you
 ### ✅ 2. Code Quality Workflow (`.github/workflows/lint.yml`)
 
 **Runs on:**
-- Every push to `main` or `develop` branches
+- Every push to `main` branch
 - Every pull request
 - Manual trigger
 
