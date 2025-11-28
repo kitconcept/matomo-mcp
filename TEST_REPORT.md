@@ -55,7 +55,7 @@
 ### 4. MCP Server Tests
 
 #### Server Initialization
-- ✅ Server name is correct: "matomo-mcp-server"
+- ✅ Server name is correct: "matomo-mcp"
 - ✅ Server instance is valid MCP Server object
 - ✅ Server initializes without errors
 

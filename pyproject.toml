@@ -1,5 +1,5 @@
 [project]
-name = "matomo-mcp-server"
+name = "matomo-mcp"
 version = "0.1.0"
 description = "MCP server for Matomo Reporting API"
 readme = "README.md"

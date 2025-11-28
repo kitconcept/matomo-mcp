@@ -30,7 +30,7 @@ async def test_mcp_protocol():
 
     print("\n1. Testing server instance...")
     assert isinstance(app, Server)
-    assert app.name == "matomo-mcp-server"
+    assert app.name == "matomo-mcp"
     print("   [OK] Server instance is valid")
 
     print("\n2. Testing tool listing...")
