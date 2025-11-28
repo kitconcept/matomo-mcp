@@ -86,9 +86,9 @@ Automates the release process.
 ## Setup Instructions
 
 ### 1. Update Badge URLs
-Edit `README.md` and replace `YOUR_USERNAME` with your GitHub username:
+Edit `README.md` and replace `kitconcept` with your GitHub username:
 ```markdown
-[![Tests](https://github.com/YOUR_USERNAME/matomo-mcp-python/actions/workflows/test.yml/badge.svg)]
+[![Tests](https://github.com/kitconcept/matomo-mcp/actions/workflows/test.yml/badge.svg)]
 ```
 
 ### 2. Optional: Setup Codecov

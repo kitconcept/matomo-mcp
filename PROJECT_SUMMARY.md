@@ -7,7 +7,7 @@ This project implements a Model Context Protocol (MCP) server that provides acce
 ## Project Structure
 
 ```
-matomo-mcp-python/
+matomo-mcp/
 ├── matomo_mcp/              # Main package
 │   ├── __init__.py          # Package initialization
 │   ├── __main__.py          # Entry point for python -m matomo_mcp

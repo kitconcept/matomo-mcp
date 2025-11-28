@@ -75,13 +75,13 @@ GitHub Actions workflows have been set up to automatically test and validate you
 
 ### 1. Update Badge URLs
 
-Edit `README.md` and replace `YOUR_USERNAME` with your GitHub username:
+Edit `README.md` and replace `kitconcept` with your GitHub username:
 
 ```bash
 # Find this line in README.md
-[![Tests](https://github.com/YOUR_USERNAME/matomo-mcp-python/...
+[![Tests](https://github.com/kitconcept/matomo-mcp/...
 
-# Replace YOUR_USERNAME with your actual GitHub username
+# Replace kitconcept with your actual GitHub username
 ```
 
 ### 2. Push to GitHub
@@ -97,7 +97,7 @@ git add .
 git commit -m "Initial commit with GitHub Actions CI/CD"
 
 # Add remote (replace with your repository URL)
-git remote add origin https://github.com/YOUR_USERNAME/matomo-mcp-python.git
+git remote add origin https://github.com/kitconcept/matomo-mcp.git
 
 # Push to GitHub
 git push -u origin main
