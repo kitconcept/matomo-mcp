@@ -94,11 +94,13 @@ MATOMO_TOKEN=your_api_token_here
 ## Installation Methods
 
 ### 1. Automated Script
+
 ```bash
 ./install.sh
 ```
 
 ### 2. Manual Installation
+
 ```bash
 python3 -m venv venv
 source venv/bin/activate
@@ -115,6 +117,7 @@ pytest --cov=matomo_mcp   # Run with coverage
 ```
 
 Test coverage includes:
+
 - Client initialization
 - API call methods
 - Error handling
@@ -123,6 +126,7 @@ Test coverage includes:
 ## Usage Examples
 
 ### Basic Queries
+
 ```
 "Show me today's visitor statistics for site 1"
 "What are the top pages on site 1 this month?"
@@ -130,6 +134,7 @@ Test coverage includes:
 ```
 
 ### Advanced Queries
+
 ```
 "Get visits for site 1 segmented by Chrome users for last 30 days"
 "Show me goal conversions for January 2024"
@@ -147,6 +152,7 @@ Test coverage includes:
 ## Error Handling
 
 The server provides clear error messages for:
+
 - Missing environment variables
 - Invalid authentication tokens
 - Invalid site IDs
@@ -157,6 +163,7 @@ The server provides clear error messages for:
 ## Limitations
 
 By design, this server:
+
 - **Only** supports the Reporting API
 - Does **not** support write operations
 - Does **not** support the Tracking API
@@ -217,7 +224,8 @@ MIT License - see LICENSE file for details
 
 ## Version History
 
-### v0.1.0 (Current)
+### 1.0.0a1 (Current)
+
 - Initial release
 - 8 reporting tools
 - Full Matomo Reporting API support

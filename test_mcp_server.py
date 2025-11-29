@@ -7,7 +7,8 @@ Test script to verify MCP server functionality without requiring a live Matomo i
 import asyncio
 import os
 import sys
-from matomo_mcp.server import app, list_tools, call_tool
+
+from matomo_mcp.server import app, call_tool, list_tools
 
 # Ensure UTF-8 output on Windows
 if sys.platform == 'win32':
@@ -104,7 +105,7 @@ async def test_tool_call_without_credentials():
         assert len(result) == 1
         assert result[0].type == "text"
         assert "Error:" in result[0].text
-        print(f"[OK] Gracefully handles missing credentials")
+        print("[OK] Gracefully handles missing credentials")
         print(f"  Error message: {result[0].text[:80]}...")
     finally:
         # Restore environment variables
@@ -191,7 +192,7 @@ async def run_all_tests():
 
     except Exception as e:
         print("\n" + "=" * 70)
-        print(f"TEST FAILED [X]")
+        print("TEST FAILED [X]")
         print(f"Error: {e}")
         print("=" * 70)
         import traceback

@@ -1,6 +1,7 @@
-import httpx
 from typing import Any, Dict, Optional
 from urllib.parse import urljoin
+
+import httpx
 
 
 class MatomoClient:

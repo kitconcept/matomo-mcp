@@ -9,11 +9,13 @@ GitHub Actions workflows have been set up to automatically test and validate you
 ### ✅ 1. Tests Workflow (`.github/workflows/test.yml`)
 
 **Runs on:**
+
 - Every push to `main` branch
 - Every pull request to `main`
 - Manual trigger
 
 **What it does:**
+
 - Tests on **3 operating systems**: Ubuntu, macOS, Windows
 - Tests on **3 Python versions**: 3.10, 3.11, 3.12
 - Total: **9 test combinations**
@@ -26,11 +28,13 @@ GitHub Actions workflows have been set up to automatically test and validate you
 ### ✅ 2. Code Quality Workflow (`.github/workflows/lint.yml`)
 
 **Runs on:**
+
 - Every push to `main` branch
 - Every pull request
 - Manual trigger
 
 **What it does:**
+
 - **Linting:** Checks code style with Ruff
 - **Formatting:** Validates Black formatting
 - **Import sorting:** Checks isort
@@ -42,10 +46,12 @@ GitHub Actions workflows have been set up to automatically test and validate you
 ### ✅ 3. Release Workflow (`.github/workflows/release.yml`)
 
 **Runs on:**
-- Git tags matching `v*.*.*` (e.g., `v0.1.0`)
+
+- Git tags matching `*.*.*` (e.g., `1.0.0a1`)
 - Manual trigger
 
 **What it does:**
+
 - Builds distribution packages (wheel + source)
 - Creates GitHub Release with artifacts
 - Publishes to PyPI (requires secret)
@@ -53,6 +59,7 @@ GitHub Actions workflows have been set up to automatically test and validate you
 ### ✅ 4. Dependabot Configuration (`.github/dependabot.yml`)
 
 **What it does:**
+
 - Automatically checks for dependency updates weekly
 - Creates pull requests for outdated packages
 - Keeps GitHub Actions up to date
@@ -60,11 +67,13 @@ GitHub Actions workflows have been set up to automatically test and validate you
 ## Configuration Files Added
 
 ### Updated Files
+
 - ✅ `pyproject.toml` - Added dev dependencies and tool configurations
 - ✅ `README.md` - Added status badges
 - ✅ `.coveragerc` - Code coverage configuration
 
 ### New Files
+
 - ✅ `.github/workflows/test.yml` - Main test workflow
 - ✅ `.github/workflows/lint.yml` - Code quality workflow
 - ✅ `.github/workflows/release.yml` - Release automation
@@ -106,6 +115,7 @@ git push -u origin main
 ### 3. View Workflow Results
 
 After pushing:
+
 1. Go to your GitHub repository
 2. Click the "Actions" tab
 3. See workflows running automatically
@@ -168,11 +178,12 @@ When ready to release:
 
 ```bash
 # Create and push a version tag
-git tag v0.1.0
-git push origin v0.1.0
+git tag 1.0.0a1
+git push origin 1.0.0a1
 ```
 
 This will automatically:
+
 1. Run all tests
 2. Build packages
 3. Create GitHub Release
@@ -181,7 +192,7 @@ This will automatically:
 ## Workflow Matrix
 
 | Workflow | Ubuntu | macOS | Windows | Python 3.10 | Python 3.11 | Python 3.12 |
-|----------|--------|-------|---------|-------------|-------------|-------------|
+| -------- | ------ | ----- | ------- | ----------- | ----------- | ----------- |
 | Tests    | ✅     | ✅    | ✅      | ✅          | ✅          | ✅          |
 | Lint     | ✅     | ❌    | ❌      | ❌          | ✅          | ❌          |
 | Release  | ✅     | ❌    | ❌      | ❌          | ✅          | ❌          |
@@ -226,16 +237,19 @@ These badges will appear in your README:
 ## Troubleshooting
 
 ### Workflows not appearing?
+
 - Ensure files are in `.github/workflows/`
 - Check YAML syntax is valid
 - Push to trigger workflows
 
 ### Tests failing?
+
 - Click on failed workflow in Actions tab
 - Review error messages
 - Fix issues and push again
 
 ### Want to disable a workflow?
+
 - Rename `.yml` to `.yml.disabled`
 - Or delete the workflow file
 
