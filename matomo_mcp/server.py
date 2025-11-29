@@ -9,10 +9,10 @@ from .client import MatomoClient
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("matomo-mcp-server")
+logger = logging.getLogger("matomo-mcp")
 
 # Initialize the MCP server
-app = Server("matomo-mcp-server")
+app = Server("matomo-mcp")
 
 # Global client instance
 matomo_client: Optional[MatomoClient] = None

@@ -19,7 +19,7 @@ if sys.platform == 'win32':
 async def test_server_initialization():
     """Test that the server initializes correctly."""
     print("Testing MCP server initialization...")
-    assert app.name == "matomo-mcp-server"
+    assert app.name == "matomo-mcp"
     print("[OK] Server name correct")
 
 
