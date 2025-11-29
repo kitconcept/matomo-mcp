@@ -1,6 +1,6 @@
 [project]
 name = "matomo-mcp"
-version = "0.1.0"
+version = "1.0.0a1"
 description = "MCP server for Matomo Reporting API"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -70,6 +70,8 @@ include_trailing_comma = true
 [tool.ruff]
 line-length = 100
 target-version = "py310"
+
+[tool.ruff.lint]
 select = [
     "E",  # pycodestyle errors
     "W",  # pycodestyle warnings

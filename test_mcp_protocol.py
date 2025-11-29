@@ -6,9 +6,7 @@ This simulates how Claude Desktop would communicate with the server.
 """
 
 import asyncio
-import json
 import sys
-from io import StringIO
 
 # Ensure UTF-8 output on Windows
 if sys.platform == 'win32':
@@ -25,7 +23,7 @@ async def test_mcp_protocol():
 
     # Import the server components
     from mcp.server import Server
-    from mcp.types import InitializeRequest, ListToolsRequest
+
     from matomo_mcp.server import app, list_tools
 
     print("\n1. Testing server instance...")
@@ -131,8 +129,9 @@ async def test_mcp_protocol():
     print("   [OK] All tools have consistent parameter patterns")
 
     print("\n7. Testing error handling without credentials...")
-    from matomo_mcp.server import call_tool
     import os
+
+    from matomo_mcp.server import call_tool
 
     # Ensure no credentials are set
     old_url = os.environ.pop("MATOMO_URL", None)

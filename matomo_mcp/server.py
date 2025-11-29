@@ -1,10 +1,11 @@
-import os
 import json
 import logging
+import os
 from typing import Any, Optional
+
 from mcp.server import Server
-from mcp.types import Tool, TextContent, ImageContent, EmbeddedResource
-from pydantic import AnyUrl
+from mcp.types import TextContent, Tool
+
 from .client import MatomoClient
 
 # Configure logging
