@@ -47,7 +47,7 @@ GitHub Actions workflows have been set up to automatically test and validate you
 
 **Runs on:**
 
-- Git tags matching `v*.*.*` (e.g., `1.0.0a1`)
+- Git tags matching `*.*.*` (e.g., `1.0.0a1`)
 - Manual trigger
 
 **What it does:**
